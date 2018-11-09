@@ -2,7 +2,26 @@
 public class AsciiTest {
 
   public static void main(String[] args) {
-    // TODO Auto-generated method stub
+    
+    int test = 1;
+
+    if (testStackPushPeek())
+      test--;
+    else
+      System.out.println("testStackPushPeek failed!");
+
+//    if (FibonacciSequenceGeneratorTest())
+//      test--;
+//    else
+//      System.out.println("FibonacciSequenceGeneratorTest failed!");
+//
+//    if (DigitProductSequenceGeneratorTest())
+//      test--;
+//    else
+//      System.out.println("DigitProductSequenceGeneratorTest failed!");
+
+
+    System.out.println(test + " tests failed!");
 
   }
 
@@ -11,8 +30,25 @@ public class AsciiTest {
   // that the correct item is at the top of the stack. You will notice that we don’t actually have a
   // DrawingChange class yet– go ahead and do that next.
   public static boolean testStackPushPeek() {
+DrawingStack testStack = new DrawingStack();
+DrawingChange testChange1 = new DrawingChange(1,1,'x', 'y');
+DrawingChange testChange2 = new DrawingChange(2,2,'c', 'k');
 
-    return false;
+testStack.push(testChange1);
+
+if(testStack.size() != 1) return false;
+
+if(!testStack.peek().equals(testChange1)) return false;
+
+testStack.push(testChange2);
+
+if(!testStack.peek().equals(testChange2)) return false;
+
+testStack.pop();
+
+if(!testStack.peek().equals(testChange1)) return false;
+
+    return true;
   }
 
   // This test method, like your main methods from previous assignments, should run multiple other
