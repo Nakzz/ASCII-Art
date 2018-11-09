@@ -23,25 +23,25 @@ public class Canvas{
     this.undoStack = new DrawingStack();
     this.redoStack = new DrawingStack();
     
-    //drawing empty canvas
-    for(int i=0; i < width; i++) {
-      for(int j=0; j < height; i++) {
-        draw(i,j,' ');
-      }
-    }
-  
+    drawingArray = new char[height][width];
+    
   } // Constructor. Throws IllegalArgumentException if width or height is 0 or negative
   // A Canvas is initially blank (use the space ' ' character)
 
 public void draw(int row, int col, char c) { 
 
-  if(width < row || height < col) throw new IllegalArgumentException();
+  if(width <= row || height <= col) throw new IllegalArgumentException();
   
-  DrawingChange change = new DrawingChange(row, col, drawingArray[row][col], c);
+  char currentChar = drawingArray[row][col];
+  
+
+    DrawingChange change = new DrawingChange(row, col, currentChar, c);
+    undoStack.push(change);   
+  
   
   drawingArray[row][col] = c;
   
-  undoStack.push(change);   
+ 
 
 } // Draw a character at the given position
   // This method should throw an IllegalArgumentException if the drawing position is outside the canvas
@@ -52,6 +52,7 @@ public void draw(int row, int col, char c) {
 public boolean undo() { 
   
   DrawingChange change =undoStack.peek();
+  
   
   redoStack.push(undoStack.peek());
   
@@ -73,7 +74,7 @@ public boolean redo() {
   
   undoStack.push(redoStack.peek());
   
-  draw(change.x, change.y, change.prevChar);
+  draw(change.x, change.y, change.newChar);
   
   if(drawingArray[change.x][change.y] == change.prevChar) {
 
@@ -88,16 +89,16 @@ public String toString() {
   
   String output = "";
   
-  for(int i=0; i < width; i++) {
-    for(int j=0; j < height; i++) {
-      if(drawingArray[i][j] == ' ') {
+  for(int i=0; i < height; i++) {
+    for(int j=0; j < width; j++) {
+      if(drawingArray[i][j] == '\u0000') {
         output += " ";
       } else {
         output += Character.toString(drawingArray[i][j]); 
       }
-      System.out.print(drawingArray[i][j]);
+      //System.out.print(drawingArray[i][j]);
     }
-    System.lineSeparator();
+    output += System.lineSeparator();
   }
   
   return output; 

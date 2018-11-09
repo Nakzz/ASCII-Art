@@ -10,11 +10,11 @@ public class AsciiTest {
     else
       System.out.println("testStackPushPeek failed!");
 
-//    if (FibonacciSequenceGeneratorTest())
+//    if (testCanvas())
 //      test--;
 //    else
-//      System.out.println("FibonacciSequenceGeneratorTest failed!");
-//
+//      System.out.println("testCanvas failed!");
+
 //    if (DigitProductSequenceGeneratorTest())
 //      test--;
 //    else
@@ -57,6 +57,35 @@ if(!testStack.peek().equals(testChange1)) return false;
   // implementations (some working, some broken)
 
   public static boolean runStackTestSuite() {
+    return false;
+  }
+  
+  
+  public static boolean testCanvas() {
+    
+    Canvas testCanvas = new Canvas(3,3);
+    
+    testCanvas.draw(0, 0, 'x');
+    testCanvas.draw(1, 1, 'x');
+    testCanvas.draw(2, 2, 'x');
+//    testCanvas.draw(3, 3, 'x');
+    
+    String testDraw = testCanvas.toString();
+    
+    System.out.println(testDraw);
+    
+    testCanvas.undo();
+    
+ testDraw = testCanvas.toString();
+    
+    System.out.println(testDraw);
+    
+    testCanvas.redo();
+//    
+ testDraw = testCanvas.toString();
+//    
+    System.out.println(testDraw);
+    
     return false;
   }
 }
