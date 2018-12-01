@@ -6,8 +6,9 @@
     
 
 Author: **[Ajmain Naqib](mailto:naqib@wisc.edu)**
-Course: CS300, Fall 2018
-Lecturer's Name: Gary Dahl
+
+Course: CS300, Fall 2018    Lecturer's Name: Gary Dahl
+
 Time spent: **4.2** hours spent in total
 
 ## Project Introduction
